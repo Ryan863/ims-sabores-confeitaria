@@ -40,8 +40,8 @@ export function Navbar() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "backdrop-blur-md bg-[#FAF6F0]/90 border-b border-[#4E3226]/10 py-3 shadow-[0_6px_24px_rgba(78,50,38,0.05)]"
-            : "bg-transparent py-4 sm:py-5"
+            ? "backdrop-blur-md bg-[#FAF6F0]/92 border-b border-[#4E3226]/10 py-2.5 shadow-[0_6px_24px_rgba(78,50,38,0.06)]"
+            : "bg-gradient-to-b from-[#1E110C]/65 to-transparent py-4 sm:py-5"
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -50,7 +50,7 @@ export function Navbar() {
             aria-label="Ims Sabores Confeitaria - Voltar ao início"
             className="min-h-[44px] inline-flex items-center rounded-lg"
           >
-            <BrandMark />
+            <BrandMark variant={scrolled ? "light" : "dark"} />
           </a>
 
           <nav
@@ -61,7 +61,11 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-[#4E3226]/85 hover:text-[#C06C4E] transition-colors py-2"
+                className={`text-sm font-medium transition-colors py-2 ${
+                  scrolled
+                    ? "text-[#4E3226]/85 hover:text-[#C06C4E]"
+                    : "text-[#FAF6F0]/90 hover:text-[#E8A389]"
+                }`}
               >
                 {link.label}
               </a>
@@ -86,7 +90,11 @@ export function Navbar() {
             aria-expanded={drawerOpen}
             aria-controls="mobile-nav-drawer"
             aria-label="Abrir menu de navegação"
-            className="lg:hidden inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-[#4E3226]/15 bg-[#FAF6F0]/85 text-[#4E3226] backdrop-blur-sm hover:bg-[#F3EBE1] transition-colors"
+            className={`lg:hidden inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border backdrop-blur-sm transition-colors ${
+              scrolled
+                ? "border-[#4E3226]/15 bg-[#FAF6F0]/85 text-[#4E3226] hover:bg-[#F3EBE1]"
+                : "border-[#FAF6F0]/25 bg-[#1E110C]/55 text-[#FAF6F0] hover:bg-[#1E110C]/80"
+            }`}
           >
             <Menu className="h-5 w-5 stroke-[1.8]" aria-hidden="true" />
           </button>
@@ -117,7 +125,7 @@ export function Navbar() {
           }`}
         >
           <div className="flex items-center justify-between border-b border-[#4E3226]/10 pb-4">
-            <BrandMark />
+            <BrandMark variant="light" />
             <button
               type="button"
               onClick={() => setDrawerOpen(false)}
